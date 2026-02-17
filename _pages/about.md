@@ -1,56 +1,126 @@
 ---
 permalink: /
-title: "Academic Pages is a ready-to-fork GitHub Pages template for academic personal websites"
+title: "Simin Liu"
 author_profile: true
-redirect_from: 
+redirect_from:
   - /about/
   - /about.html
 ---
 
-This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. Incidentally, these same features make it a great template for anyone that needs to show off a professional template!
+I'm a recent PhD graduate of CMU's Robotics Institute. My research combines machine learning and model-based planning and control for structured, scalable autonomy. In the past, I've worked on planning for contact-rich manipulation, safe control for agile aerial robots, and control for locomotion under disturbances. At CMU, I was honored to be advised by [Changliu Liu](https://www.cs.cmu.edu/~cliu6/) and [John Dolan](https://www.ri.cmu.edu/ri-faculty/john-m-dolan/) and supported by the Qualcomm Graduate Fellowship. I have also spent time at the [Robotics and AI Institute](https://theaiinstitute.com/) (previously the Boston Dynamics AI Institute).
 
- You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and Markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
+Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked with [Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/) on deep RL for robotics.
 
-A data-driven personal website
-======
-Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured Markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various Markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
+<span style="color: #c00; font-weight: bold;">I am on the job market — please reach out if you have a relevant role!</span>
 
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your Markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over - just be sure to save the Markdown files! You can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
+---
 
-For those users that need more advanced functionality, the template also supports the following popular tools:
-- [MathJax](https://www.mathjax.org/) for mathematical equations
-- [Mermaid](https://mermaid.js.org/) for diagraming
-- [Plotly](https://plotly.com/javascript/) for plotting
+## News
 
-Getting started
-======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this template](https://github.com/academicpages/academicpages.github.io) by clicking the "Use this template" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](https://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
+- [Feb 2026] Talk at CMU Manipulation Seminar: "Global Planning for Contact-Rich Manipulation"
+- [2025] Paper accepted at ACM Transactions on Cyber-Physical Systems: certifying robustness of learned perception
+- [Fall 2025] Successfully passed defense
+- [Sep 2024–May 2025] Research internship at the Robotics and AI Institute (formerly Boston Dynamics AI Institute)
+- [Jun 2024] Paper at European Controls Conference: safe control for uncertain systems
+- [2023] Qualcomm Graduate Fellowship (18 selected from 182 applicants)
+- [May 2023] Paper at ICLR 2023 (Oral, top 25%)
 
-Site-wide configuration
-------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
+---
 
-Create content & metadata
-------
-For site content, there is one Markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a Markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each Markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
+## Research
 
-**Markdown generator**
+<div class="portfolio-list">
 
-The repository includes [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
-) that converts a CSV containing structured data about talks or presentations into individual Markdown files that will be properly formatted for the Academic Pages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the Markdown files, then commit and push them to the GitHub repository.
+<div class="portfolio-item">
+  <h3>High-Performance Planning for Contact-Rich Manipulation</h3>
+  <p>Sampling-based planners for contact-rich manipulation are common, but they produce circuitous, inefficient trajectories. Improving beyond these methods is hard because the action space is combinatorial and cannot be exhaustively searched. Our insight is to reduce the action space to higher-level, algorithmically-generated reachable set primitives, enabling optimal search in this space in under a minute for bimanual manipulation. </p>
+  <div class="portfolio-media">
+    <!-- Replace src with your image or embed a video here -->
+    <img src="/images/portfolio/contact_planning.png" alt="Contact-rich manipulation planning" />
+    <p class="portfolio-caption">Our method generates shorter, more direct plans than a state-of-the-art sampling-based planner.</p>
+  </div>
+</div>
 
-How to edit your site's GitHub repository
-------
-Many people use a git client to create files on their local computer and then push them to GitHub's servers. If you are not familiar with git, you can directly edit these configuration and Markdown files directly in the github.com interface. Navigate to a file (like [this one](https://github.com/academicpages/academicpages.github.io/blob/master/_talks/2012-03-01-talk-1.md) and click the pencil icon in the top right of the content preview (to the right of the "Raw | Blame | History" buttons). You can delete a file by clicking the trashcan icon to the right of the pencil icon. You can also create new files or upload files by navigating to a directory and clicking the "Create new file" or "Upload files" buttons. 
+<div class="portfolio-group">
+  <h3 class="portfolio-group-title">Safe Control</h3>
+  <p class="portfolio-group-intro">We build reactive safety filters that wrap a nominal controller, modifying its commands only when safety is at risk. A good filter is minimally invasive while respecting input bounds and system dynamics that limit how quickly safety maneuvers can be executed.</p>
 
-Example: editing a Markdown file for a talk
-![Editing a Markdown file for a talk](/images/editing-talk.png)
+  <div class="portfolio-subitem">
+    <h4>Safe Control for Uncertain Systems</h4>
+    <p>Most safety filter synthesis approaches assume a known model, which is impractical. We consider systems with uncertain model parameters and devise a sum-of-squares programming algorithm for synthesis. We generate a geofencing (stay-within-region) safety filter for a drone with unknown drag in minutes on a regular laptop CPU.</p>
+    <div class="portfolio-media">
+      <img src="/images/portfolio/safe_control_uncertain.png" alt="Safe control for uncertain systems" />
+      <p class="portfolio-caption">Our safety filter keeps the drone inside the geofence despite unknown wind gusts.</p>
+    </div>
+  </div>
 
-For more info
-------
-More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/), the [growing wiki](https://github.com/academicpages/academicpages.github.io/wiki), and you can always [ask a question on GitHub](https://github.com/academicpages/academicpages.github.io/discussions). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful.
+  <div class="portfolio-subitem">
+    <h4>Safe Control for High-Dimensional Systems</h4>
+    <p>Grid-based RL can synthesize safety filters via an optimal control formulation, but it quickly becomes intractable beyond ~6D. We take inspiration from deep RL and nonlinear control, posing this problem as training a neural function to satisfy control barrier function (CBF) conditions. We synthesize a safety filter for a 10D system with &lt;2 hours of training, and it triggers orders of magnitude less often than model predictive control (MPC).</p>
+    <div class="portfolio-media">
+      <img src="/images/portfolio/safe_control_highdim.png" alt="Safe control for high-dimensional systems" />
+      <p class="portfolio-caption">Our safety filter prevents the pendulum from falling while the nominal controller stabilizes the quadrotor (10D quadrotor–pendulum system).</p>
+    </div>
+  </div>
+</div>
+
+<div class="portfolio-item">
+  <h3>Model-Based RL for Locomotion Under Disturbances</h3>
+  <p>We study adaptive locomotion under a broad range of previously unseen disturbances (external forces, state-estimation error, and unmodeled effects), where both purely model-based methods and standard RL can struggle to generalize. We combine adaptive control with meta-learning, performing online model estimation on a neural dynamics model and applying the model inside a sampling-based controller. We pre-train  dynamics features offline using 1–2 hours of disturbance data, and at deployment we find the controller can track a path closely despite unseen disturbances.</p>
+  <div class="portfolio-media">
+    <img src="/images/portfolio/locomotion.png" alt="Locomotion under disturbances" />
+    <p class="portfolio-caption">The robot closely tracks the path despite leg loss, terrain changes, payload variation, and state-estimation error.</p>
+  </div>
+</div>
+
+</div>
+
+<style>
+.portfolio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 1rem;
+}
+.portfolio-item h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.portfolio-media {
+  margin-top: 1rem;
+  background: #f5f5f5;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.portfolio-media img {
+  width: 100%;
+  display: block;
+}
+.portfolio-caption {
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.875rem;
+  color: #555;
+  font-style: italic;
+}
+.portfolio-group {
+}
+.portfolio-group-title {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+.portfolio-group-intro {
+  margin-bottom: 0;
+  opacity: 0.85;
+}
+.portfolio-subitem {
+  margin-top: 1.5rem;
+  border-left: 3px solid currentColor;
+  padding-left: 1.25rem;
+}
+.portfolio-subitem h4 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+}
+</style>

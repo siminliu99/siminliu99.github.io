@@ -7,6 +7,38 @@ author_profile: true
 
 {% include base_path %}
 
+<ul class="teaching-list">
 {% for post in site.teaching reversed %}
-  {% include archive-single.html %}
+  <li class="teaching-entry">
+    <div class="teaching-title">{{ post.title }}</div>
+    <div class="teaching-meta">{{ post.venue }}, {{ post.year }}</div>
+    <div class="teaching-instructor">Taught by {{ post.instructor }} — <a href="{{ post.course_url }}">website</a></div>
+  </li>
 {% endfor %}
+</ul>
+
+<style>
+.teaching-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.teaching-entry {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid currentColor;
+  line-height: 1.6;
+}
+.teaching-entry:last-child {
+  border-bottom: none;
+}
+.teaching-title {
+  font-weight: bold;
+}
+.teaching-meta {
+  opacity: 0.75;
+}
+.teaching-instructor {
+  opacity: 0.6;
+  font-size: 0.95rem;
+}
+</style>
