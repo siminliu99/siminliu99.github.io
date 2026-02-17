@@ -1,22 +1,27 @@
 var addressPoints = [
   [
-    "Talk 1 on Relevant Topic in Your Field<br />UC San Francisco, Department of Testing; San Francisco, CA, USA",
-    37.7879363,
-    -122.4075201
+    "Scalable Synthesis of Safe Control Filters<br />Safe Autonomous Systems Lab, UC San Diego; San Diego, CA",
+    32.7174202,
+    -117.162772
   ],
   [
-    "Talk 2 on Relevant Topic in Your Field<br />London School of Testing; London, UK",
-    51.5074456,
-    -0.1277653
+    "Scalable Synthesis of Safe Control Filters<br />Conference on Robot Learning (CoRL); London, UK (virtual)",
+    51.5166503,
+    0.023354
   ],
   [
-    "Tutorial 1 on Relevant Topic in Your Field<br />UC-Berkeley Institute for Testing Science; Berkeley, CA, USA",
-    37.8708393,
-    -122.272863
+    "Synthesis of Safe Control Filters for Uncertain Systems<br />European Controls Conference (ECC); Stockholm, Sweden",
+    59.3251172,
+    18.0710935
   ],
   [
-    "Conference Proceeding talk 3 on Relevant Topic in Your Field<br />Testing Institute of America 2014 Annual Conference; Los Angeles, CA, USA",
-    34.0536909,
-    -118.242766
+    "Global Planning for Contact-Rich Manipulation<br />Manipulation Seminar, Carnegie Mellon University; Pittsburgh, PA",
+    40.4406968,
+    -80.0025666
+  ],
+  [
+    "Reactive Safety for Self-Driving<br />Qualcomm Graduate Fellowship Awardee Talks; San Diego, CA",
+    32.7174202,
+    -117.162772
   ]
 ];
