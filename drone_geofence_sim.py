@@ -5,12 +5,15 @@ Visualizes a quadrotor-like drone inside a transparent geofence box.
 A wind gust pushes the drone toward a wall; a safety controller (barrier-
 function inspired) activates to keep it inside the boundary.
 
-Requirements:  conda activate drone_sim   (or pip install mujoco numpy)
-Run:           mjpython drone_geofence_sim.py   (macOS requires mjpython, not python)
+Phase 1: Runs the MuJoCo simulation offscreen and records rendered frames.
+Phase 2: Opens a matplotlib window with Play/Pause and a time slider
+         so you can replay the animation at will.
+
+Requirements:  conda activate drone_sim   (or pip install mujoco numpy matplotlib)
+Run:           python drone_geofence_sim.py   (no mjpython needed — offscreen rendering)
 """
 
 import mujoco
-import mujoco.viewer
 import numpy as np
 import time
 
@@ -35,6 +38,11 @@ WIND_STRENGTH = 18.0
 
 # Home position
 HOME = np.array([0.0, 0.0, 2.0])
+
+# Render settings
+RENDER_WIDTH = 960
+RENDER_HEIGHT = 720
+RENDER_FPS = 30
 
 # ── Helpers ───────────────────────────────────────────────────────────
 
@@ -97,7 +105,7 @@ Z = FENCE_HEIGHT
 WALL_THICK = 0.02
 EDGE_RAD = 0.03
 
-# Build wind arrow geoms (3x3 grid, will be toggled via rgba alpha)
+# Build wind arrow geoms (3x3 grid, toggled via rgba alpha)
 N_ARROWS = 9
 arrow_geoms_xml = ""
 for idx in range(N_ARROWS):
@@ -122,7 +130,7 @@ XML = f"""
   <option timestep="0.005" gravity="0 0 -9.81" integrator="RK4"/>
 
   <visual>
-    <global offwidth="1280" offheight="960"/>
+    <global offwidth="{RENDER_WIDTH}" offheight="{RENDER_HEIGHT}"/>
     <rgba fog="0.9 0.9 0.95 1"/>
     <quality shadowsize="2048"/>
   </visual>
@@ -145,29 +153,21 @@ XML = f"""
     <light pos="5 5 6" dir="-1 -1 -1" diffuse="0.4 0.4 0.4"/>
 
     <!-- ── Geofence walls (translucent) ─────────────────────────── -->
-    <!-- +X wall -->
     <geom type="box" size="{WALL_THICK} {H} {Z/2}" pos="{H} 0 {Z/2}" material="fence_mat"/>
-    <!-- -X wall -->
     <geom type="box" size="{WALL_THICK} {H} {Z/2}" pos="{-H} 0 {Z/2}" material="fence_mat"/>
-    <!-- +Y wall -->
     <geom type="box" size="{H} {WALL_THICK} {Z/2}" pos="0 {H} {Z/2}" material="fence_mat"/>
-    <!-- -Y wall -->
     <geom type="box" size="{H} {WALL_THICK} {Z/2}" pos="0 {-H} {Z/2}" material="fence_mat"/>
-    <!-- Top -->
     <geom type="box" size="{H} {H} {WALL_THICK}" pos="0 0 {Z}" material="fence_mat"/>
 
     <!-- ── Geofence edges (bright wireframe look) ───────────────── -->
-    <!-- Bottom edges -->
     <geom type="capsule" fromto="{-H} {-H} 0 {H} {-H} 0" size="{EDGE_RAD}" material="fence_edge_mat"/>
     <geom type="capsule" fromto="{H} {-H} 0 {H} {H} 0" size="{EDGE_RAD}" material="fence_edge_mat"/>
     <geom type="capsule" fromto="{H} {H} 0 {-H} {H} 0" size="{EDGE_RAD}" material="fence_edge_mat"/>
     <geom type="capsule" fromto="{-H} {H} 0 {-H} {-H} 0" size="{EDGE_RAD}" material="fence_edge_mat"/>
-    <!-- Top edges -->
     <geom type="capsule" fromto="{-H} {-H} {Z} {H} {-H} {Z}" size="{EDGE_RAD}" material="fence_edge_mat"/>
     <geom type="capsule" fromto="{H} {-H} {Z} {H} {H} {Z}" size="{EDGE_RAD}" material="fence_edge_mat"/>
     <geom type="capsule" fromto="{H} {H} {Z} {-H} {H} {Z}" size="{EDGE_RAD}" material="fence_edge_mat"/>
     <geom type="capsule" fromto="{-H} {H} {Z} {-H} {-H} {Z}" size="{EDGE_RAD}" material="fence_edge_mat"/>
-    <!-- Vertical edges -->
     <geom type="capsule" fromto="{-H} {-H} 0 {-H} {-H} {Z}" size="{EDGE_RAD}" material="fence_edge_mat"/>
     <geom type="capsule" fromto="{H} {-H} 0 {H} {-H} {Z}" size="{EDGE_RAD}" material="fence_edge_mat"/>
     <geom type="capsule" fromto="{H} {H} 0 {H} {H} {Z}" size="{EDGE_RAD}" material="fence_edge_mat"/>
@@ -177,12 +177,9 @@ XML = f"""
     <body name="drone" pos="0 0 2">
       <freejoint name="drone_joint"/>
       <inertial pos="0 0 0" mass="{DRONE_MASS}" diaginertia="0.01 0.01 0.02"/>
-      <!-- Central body -->
       <geom type="box" size="0.15 0.15 0.05" material="drone_body_mat" contype="0" conaffinity="0"/>
-      <!-- Arms -->
       <geom type="capsule" fromto="-0.28 -0.28 0 0.28 0.28 0" size="0.02" material="drone_arm_mat" contype="0" conaffinity="0"/>
       <geom type="capsule" fromto="0.28 -0.28 0 -0.28 0.28 0" size="0.02" material="drone_arm_mat" contype="0" conaffinity="0"/>
-      <!-- Rotors -->
       <geom type="cylinder" pos="0.28 0.28 0.05" size="0.13 0.008" material="rotor_mat" contype="0" conaffinity="0"/>
       <geom type="cylinder" pos="0.28 -0.28 0.05" size="0.13 0.008" material="rotor_mat" contype="0" conaffinity="0"/>
       <geom type="cylinder" pos="-0.28 0.28 0.05" size="0.13 0.008" material="rotor_mat" contype="0" conaffinity="0"/>
@@ -195,11 +192,9 @@ XML = f"""
   </worldbody>
 
   <actuator>
-    <!-- Direct force actuators on the drone free joint (tx, ty, tz) -->
     <general joint="drone_joint" ctrlrange="-50 50" gear="1 0 0 0 0 0" name="fx"/>
     <general joint="drone_joint" ctrlrange="-50 50" gear="0 1 0 0 0 0" name="fy"/>
     <general joint="drone_joint" ctrlrange="-50 50" gear="0 0 1 0 0 0" name="fz"/>
-    <!-- Torque actuators for attitude stabilization -->
     <general joint="drone_joint" ctrlrange="-5 5" gear="0 0 0 1 0 0" name="tx"/>
     <general joint="drone_joint" ctrlrange="-5 5" gear="0 0 0 0 1 0" name="ty"/>
     <general joint="drone_joint" ctrlrange="-5 5" gear="0 0 0 0 0 1" name="tz"/>
@@ -207,7 +202,7 @@ XML = f"""
 </mujoco>
 """
 
-# ── Load model and create viewer ──────────────────────────────────────
+# ── Load model ────────────────────────────────────────────────────────
 model = mujoco.MjModel.from_xml_string(XML)
 data = mujoco.MjData(model)
 mujoco.mj_forward(model, data)
@@ -223,135 +218,242 @@ trail_geom_ids = []
 for idx in range(N_TRAIL):
     trail_geom_ids.append(mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_GEOM, f"trail_{idx}"))
 
-drone_body_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_BODY, "drone")
+# ── Set up offscreen renderer & camera ────────────────────────────────
+renderer = mujoco.Renderer(model, height=RENDER_HEIGHT, width=RENDER_WIDTH)
 
-# Trail state
+camera = mujoco.MjvCamera()
+# Camera looks along the +X wall (from -Y side, looking along +Y)
+# This gives a side view where the drone approaches the wall from left to right
+camera.azimuth = 0          # looking along +Y axis
+camera.elevation = -15
+camera.distance = 13
+camera.lookat[:] = [1.0, 0.0, 2.0]  # slightly toward +X where the action happens
+
+# ── Phase 1: Simulate & render frames ────────────────────────────────
+print("=" * 60)
+print("  Phase 1: Running simulation and rendering frames...")
+print("=" * 60)
+
+frames = []
+frame_times = []
+frame_interval = 1.0 / RENDER_FPS
+next_frame_time = 0.0
+
 trail_idx = 0
 trail_timer = 0.0
-TRAIL_INTERVAL = 0.08  # seconds between trail dots
+TRAIL_INTERVAL = 0.08
 
-print("=" * 60)
-print("  Drone Geofence Simulation — Safe Controller Demo")
-print("=" * 60)
-print("Phases:")
-print("  0-4s   Normal hovering flight")
-print("  4-13s  Wind gust pushes drone toward +X fence wall")
-print("         Safe controller activates near the boundary")
-print("  13-18s Wind subsides, drone recovers to center")
+sim_start = time.time()
+
+while data.time < SIM_DURATION:
+    t = data.time
+
+    # Get drone state
+    pos = data.qpos[:3].copy()
+    quat = data.qpos[3:7].copy()
+    vel = data.qvel[:3].copy()
+    ang_vel = data.qvel[3:6].copy()
+
+    # ── Compute forces ────────────────────────────────────────────
+    hover = np.array([0, 0, 9.81 * DRONE_MASS])
+    pos_err = HOME - pos
+    hold = 1.5 * pos_err - 1.0 * vel
+    w = wind_force(t)
+    b = barrier_control(pos, vel)
+    barrier_on = is_barrier_active(pos)
+    total = hover + hold + w + b
+
+    # Attitude stabilization
+    rot = np.zeros(9)
+    mujoco.mju_quat2Mat(rot, quat)
+    rot = rot.reshape(3, 3)
+    roll_err = rot[2, 1]
+    pitch_err = -rot[2, 0]
+    yaw_err = rot[1, 0]
+    torque = np.array([
+        -15 * roll_err  - 3 * ang_vel[0],
+        -15 * pitch_err - 3 * ang_vel[1],
+        -2 * yaw_err    - 1 * ang_vel[2],
+    ])
+
+    # Apply via actuators
+    data.ctrl[0] = np.clip(total[0], -50, 50)
+    data.ctrl[1] = np.clip(total[1], -50, 50)
+    data.ctrl[2] = np.clip(total[2], -50, 50)
+    data.ctrl[3] = np.clip(torque[0], -5, 5)
+    data.ctrl[4] = np.clip(torque[1], -5, 5)
+    data.ctrl[5] = np.clip(torque[2], -5, 5)
+
+    # ── Update visual decorations ─────────────────────────────────
+    w_mag = np.linalg.norm(w)
+    grid_offsets = [(-1.2, -0.8), (-1.2, 0.0), (-1.2, 0.8),
+                    (0.0, -0.8),  (0.0, 0.0),  (0.0, 0.8),
+                    (1.2, -0.8),  (1.2, 0.0),  (1.2, 0.8)]
+    for idx in range(N_ARROWS):
+        gid = arrow_geom_ids[idx]
+        hid = arrow_head_ids[idx]
+        if w_mag > 0.5:
+            dy, dz = grid_offsets[idx]
+            arrow_center = pos + np.array([-2.0, dy, dz])
+            arrow_len = w_mag / WIND_STRENGTH * 1.2
+            alpha = min(1.0, w_mag / WIND_STRENGTH) * 0.85
+            model.geom_pos[gid] = arrow_center
+            model.geom_size[gid] = [0.015, arrow_len / 2, 0]
+            model.geom_rgba[gid] = [0.2, 0.55 + 0.4 * alpha, 1.0, alpha]
+            head_pos = arrow_center + WIND_DIR * arrow_len / 2
+            model.geom_pos[hid] = head_pos
+            model.geom_rgba[hid] = [0.2, 0.55 + 0.4 * alpha, 1.0, alpha]
+        else:
+            model.geom_rgba[gid] = [0, 0, 0, 0]
+            model.geom_rgba[hid] = [0, 0, 0, 0]
+
+    # Trail dots
+    trail_timer += model.opt.timestep
+    if trail_timer >= TRAIL_INTERVAL:
+        trail_timer = 0.0
+        gid = trail_geom_ids[trail_idx % N_TRAIL]
+        model.geom_pos[gid] = pos.copy()
+        if barrier_on:
+            model.geom_rgba[gid] = [1.0, 0.85, 0.1, 0.9]
+        else:
+            model.geom_rgba[gid] = [0.1, 0.8, 0.3, 0.9]
+        trail_idx += 1
+
+    # ── Render frame if it's time ─────────────────────────────────
+    if t >= next_frame_time:
+        mujoco.mj_forward(model, data)
+        renderer.update_scene(data, camera)
+        frame = renderer.render()
+        frames.append(frame.copy())
+        frame_times.append(t)
+        next_frame_time += frame_interval
+
+        # Progress
+        pct = int(t / SIM_DURATION * 100)
+        if len(frames) % 30 == 0:
+            print(f"  {pct:3d}% — t={t:.1f}s, {len(frames)} frames rendered")
+
+    # Step physics
+    mujoco.mj_step(model, data)
+
+renderer.close()
+sim_elapsed = time.time() - sim_start
+print(f"  100% — {len(frames)} frames rendered in {sim_elapsed:.1f}s")
 print()
-print("Controls: Drag to orbit, scroll to zoom, double-click to track")
+
+# ── Phase 2: Matplotlib replay window ─────────────────────────────────
+print("=" * 60)
+print("  Phase 2: Opening replay window...")
+print("  Controls: Play/Pause button, drag the time slider, or")
+print("            press Left/Right arrow keys to step frame-by-frame")
 print("=" * 60)
 
-with mujoco.viewer.launch_passive(model, data) as viewer:
-    # Set initial camera
-    viewer.cam.azimuth = 135
-    viewer.cam.elevation = -25
-    viewer.cam.distance = 14
-    viewer.cam.lookat[:] = [0, 0, 2]
+import matplotlib
+matplotlib.use("TkAgg")
+import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider, Button
+from matplotlib.animation import FuncAnimation
 
-    t = 0.0
-    while viewer.is_running() and t < SIM_DURATION:
-        step_start = time.time()
+n_frames = len(frames)
 
-        # Get drone state
-        # For a freejoint: qpos = [x,y,z, qw,qx,qy,qz], qvel = [vx,vy,vz, wx,wy,wz]
-        pos = data.qpos[:3].copy()
-        quat = data.qpos[3:7].copy()
-        vel = data.qvel[:3].copy()
-        ang_vel = data.qvel[3:6].copy()
+fig, ax = plt.subplots(figsize=(10, 7.5))
+fig.subplots_adjust(bottom=0.18)
+ax.set_axis_off()
+fig.patch.set_facecolor("black")
 
-        # ── Compute forces ──────────────────────────────────────────
-        # 1. Hover (cancel gravity)
-        hover = np.array([0, 0, 9.81 * DRONE_MASS])
+im = ax.imshow(frames[0])
 
-        # 2. Gentle PD hold toward home
-        pos_err = HOME - pos
-        hold = 1.5 * pos_err - 1.0 * vel
+# Phase label overlay
+phase_text = ax.text(0.5, 0.96, "", transform=ax.transAxes, fontsize=14,
+                     color="white", ha="center", va="top", fontweight="bold",
+                     bbox=dict(boxstyle="round,pad=0.3", facecolor="black", alpha=0.6))
 
-        # 3. Wind
-        w = wind_force(t)
+def get_phase_label(t):
+    if t < WIND_START:
+        return "Normal Flight"
+    elif t < WIND_END:
+        return "Wind Gust — Safe Controller Active"
+    else:
+        return "Recovery"
 
-        # 4. Safe controller
-        b = barrier_control(pos, vel)
-        barrier_on = is_barrier_active(pos)
+# Slider
+ax_slider = fig.add_axes([0.15, 0.06, 0.55, 0.03])
+slider = Slider(ax_slider, "Time (s)", 0, SIM_DURATION,
+                valinit=0, valstep=frame_interval, color="#4a90d9")
 
-        total = hover + hold + w + b
+# Play/Pause button
+ax_btn = fig.add_axes([0.78, 0.04, 0.12, 0.05])
+btn = Button(ax_btn, "Pause", color="#333333", hovercolor="#555555")
+btn.label.set_color("white")
 
-        # 5. Attitude stabilization: convert quaternion to euler-ish errors
-        # Simple approach: use the rotation matrix's deviation from identity
-        rot = np.zeros(9)
-        mujoco.mju_quat2Mat(rot, quat)
-        rot = rot.reshape(3, 3)
-        # Roll/pitch errors from off-diagonal elements
-        roll_err = rot[2, 1]   # ~sin(roll)
-        pitch_err = -rot[2, 0]  # ~sin(pitch)
-        yaw_err = rot[1, 0]    # ~sin(yaw)
+# State
+state = {"playing": True, "frame_idx": 0}
 
-        torque = np.array([
-            -15 * roll_err  - 3 * ang_vel[0],
-            -15 * pitch_err - 3 * ang_vel[1],
-            -2 * yaw_err    - 1 * ang_vel[2],
-        ])
+def update_display(frame_idx):
+    """Update the displayed frame and label."""
+    frame_idx = max(0, min(frame_idx, n_frames - 1))
+    state["frame_idx"] = frame_idx
+    im.set_data(frames[frame_idx])
+    t = frame_times[frame_idx]
+    phase_text.set_text(f"{get_phase_label(t)}  —  t = {t:.1f}s")
+    slider.set_val(t)
+    fig.canvas.draw_idle()
 
-        # Apply via actuators (clipped to ctrlrange)
-        data.ctrl[0] = np.clip(total[0], -50, 50)
-        data.ctrl[1] = np.clip(total[1], -50, 50)
-        data.ctrl[2] = np.clip(total[2], -50, 50)
-        data.ctrl[3] = np.clip(torque[0], -5, 5)
-        data.ctrl[4] = np.clip(torque[1], -5, 5)
-        data.ctrl[5] = np.clip(torque[2], -5, 5)
+def on_slider_change(val):
+    """Jump to the frame closest to the slider time."""
+    target_idx = int(round(val / frame_interval))
+    target_idx = max(0, min(target_idx, n_frames - 1))
+    state["frame_idx"] = target_idx
+    im.set_data(frames[target_idx])
+    t = frame_times[target_idx]
+    phase_text.set_text(f"{get_phase_label(t)}  —  t = {t:.1f}s")
+    fig.canvas.draw_idle()
 
-        # ── Update visual decorations ───────────────────────────────
-        w_mag = np.linalg.norm(w)
+slider.on_changed(on_slider_change)
 
-        # Wind arrows: 3x3 grid positioned upstream of the drone
-        grid_offsets = [(-1.2, -0.8), (-1.2, 0.0), (-1.2, 0.8),
-                        (0.0, -0.8),  (0.0, 0.0),  (0.0, 0.8),
-                        (1.2, -0.8),  (1.2, 0.0),  (1.2, 0.8)]
-        for idx in range(N_ARROWS):
-            gid = arrow_geom_ids[idx]
-            hid = arrow_head_ids[idx]
-            if w_mag > 0.5:
-                dy, dz = grid_offsets[idx]
-                arrow_center = pos + np.array([-2.0, dy, dz])
-                arrow_len = w_mag / WIND_STRENGTH * 1.2
-                alpha = min(1.0, w_mag / WIND_STRENGTH) * 0.85
+def on_play_pause(event):
+    if state["playing"]:
+        state["playing"] = False
+        btn.label.set_text("Play")
+    else:
+        state["playing"] = True
+        btn.label.set_text("Pause")
+        # If at end, restart
+        if state["frame_idx"] >= n_frames - 1:
+            state["frame_idx"] = 0
 
-                model.geom_pos[gid] = arrow_center
-                model.geom_size[gid] = [0.015, arrow_len / 2, 0]
-                model.geom_rgba[gid] = [0.2, 0.55 + 0.4 * alpha, 1.0, alpha]
+btn.on_clicked(on_play_pause)
 
-                # Arrowhead at the tip
-                head_pos = arrow_center + WIND_DIR * arrow_len / 2
-                model.geom_pos[hid] = head_pos
-                model.geom_rgba[hid] = [0.2, 0.55 + 0.4 * alpha, 1.0, alpha]
-            else:
-                model.geom_rgba[gid] = [0, 0, 0, 0]
-                model.geom_rgba[hid] = [0, 0, 0, 0]
+def on_key(event):
+    if event.key == " ":
+        on_play_pause(event)
+    elif event.key == "right":
+        state["playing"] = False
+        btn.label.set_text("Play")
+        update_display(state["frame_idx"] + 1)
+    elif event.key == "left":
+        state["playing"] = False
+        btn.label.set_text("Play")
+        update_display(state["frame_idx"] - 1)
 
-        # Trail dots
-        trail_timer += model.opt.timestep
-        if trail_timer >= TRAIL_INTERVAL:
-            trail_timer = 0.0
-            gid = trail_geom_ids[trail_idx % N_TRAIL]
-            model.geom_pos[gid] = pos.copy()
-            if barrier_on:
-                model.geom_rgba[gid] = [1.0, 0.85, 0.1, 0.9]  # yellow when barrier active
-            else:
-                model.geom_rgba[gid] = [0.1, 0.8, 0.3, 0.9]   # green normal
-            trail_idx += 1
+fig.canvas.mpl_connect("key_press_event", on_key)
 
-        # Step physics
-        mujoco.mj_step(model, data)
-        t = data.time
+def animate(i):
+    if state["playing"]:
+        idx = state["frame_idx"] + 1
+        if idx >= n_frames:
+            idx = 0  # loop
+        state["frame_idx"] = idx
+        im.set_data(frames[idx])
+        t = frame_times[idx]
+        phase_text.set_text(f"{get_phase_label(t)}  —  t = {t:.1f}s")
+        # Update slider without triggering callback loop
+        slider.eventson = False
+        slider.set_val(t)
+        slider.eventson = True
+    return [im, phase_text]
 
-        # Sync viewer
-        viewer.sync()
+anim = FuncAnimation(fig, animate, interval=1000 / RENDER_FPS, blit=False, cache_frame_data=False)
 
-        # Real-time pacing
-        elapsed = time.time() - step_start
-        sleep_time = model.opt.timestep - elapsed
-        if sleep_time > 0:
-            time.sleep(sleep_time)
-
-print("\nSimulation complete!")
+plt.show()
+print("\nDone.")
