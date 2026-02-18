@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Simin Liu"
+title: "Bio"
 author_profile: true
 redirect_from:
   - /about/
@@ -24,10 +24,10 @@ Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked
 - [Jun 2024] Paper accepted at ECC
 - [May 2023] Selected for Qualcomm Graduate Fellowship
 - [April 2023] Paper accepted at ICLR
-- [Sept 2022] Paper accepted at CORL 
+<!-- - [Sept 2022] Paper accepted at CORL  -->
 ---
 
-## Research
+## Portfolio
 
 <div class="portfolio-list">
 
@@ -52,7 +52,10 @@ Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked
     <h4>Safe Control for Uncertain Systems</h4>
     <p>Most safety filter synthesis approaches assume a known model, which is impractical. We consider systems with uncertain model parameters and devise a sum-of-squares programming algorithm for synthesis. We generate a geofencing (stay-within-region) safety filter for a drone with unknown drag in minutes on a regular laptop CPU.</p>
     <div class="portfolio-media">
-      <img src="/images/portfolio/safe_control_uncertain.png" alt="Safe control for uncertain systems" />
+      <!-- <img src="/images/portfolio/safe_control_uncertain.png" alt="Safe control for uncertain systems" /> -->
+      <video autoplay loop muted playsinline>
+      <source src="/images/portfolio/geofence_drone_4x.mp4" type="video/mp4">
+      </video>
       <p class="portfolio-caption">Our safety filter keeps the drone inside the geofence despite unknown wind gusts.</p>
     </div>
   </div>
