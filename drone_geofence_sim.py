@@ -40,8 +40,8 @@ WIND_STRENGTH = 18.0
 HOME = np.array([0.0, 0.0, 2.0])
 
 # Render settings
-RENDER_WIDTH = 960
-RENDER_HEIGHT = 720
+RENDER_WIDTH = 1920
+RENDER_HEIGHT = 1440
 RENDER_FPS = 30
 
 # ── Helpers ───────────────────────────────────────────────────────────
@@ -224,10 +224,15 @@ renderer = mujoco.Renderer(model, height=RENDER_HEIGHT, width=RENDER_WIDTH)
 camera = mujoco.MjvCamera()
 # Camera looks along the +X wall (from -Y side, looking along +Y)
 # This gives a side view where the drone approaches the wall from left to right
-camera.azimuth = 0          # looking along +Y axis
-camera.elevation = -15
-camera.distance = 13
-camera.lookat[:] = [1.0, 0.0, 2.0]  # slightly toward +X where the action happens
+# camera.azimuth = 0          # looking along +Y axis
+# camera.elevation = -15
+# camera.distance = 13
+# camera.lookat[:] = [1.0, 0.0, 2.0]  # slightly toward +X where the action happens
+
+camera.azimuth = -90          
+camera.elevation = -13
+camera.distance = 8
+camera.lookat[:] = [2.5, 0.0, 2.0]  # slightly toward +X where the action happens
 
 # ── Phase 1: Simulate & render frames ────────────────────────────────
 print("=" * 60)
@@ -356,12 +361,12 @@ from matplotlib.animation import FuncAnimation
 
 n_frames = len(frames)
 
-fig, ax = plt.subplots(figsize=(10, 7.5))
-fig.subplots_adjust(bottom=0.18)
+fig, ax = plt.subplots(figsize=(14, 10.5), dpi=150)
+fig.subplots_adjust(bottom=0.14, left=0.02, right=0.98, top=0.98)
 ax.set_axis_off()
 fig.patch.set_facecolor("black")
 
-im = ax.imshow(frames[0])
+im = ax.imshow(frames[0], interpolation="lanczos")
 
 # Phase label overlay
 phase_text = ax.text(0.5, 0.96, "", transform=ax.transAxes, fontsize=14,
