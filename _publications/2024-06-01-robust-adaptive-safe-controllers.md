@@ -8,7 +8,7 @@ date: 2024-06-01
 venue: 'European Controls Conference (ECC), 2024'
 authors: 'S. Liu, K. Yun, J. Dolan, C. Liu'
 award: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2311.00822'
 slides_url: 'https://docs.google.com/presentation/d/1QYWsoSC_oG44lkpz2loEeDDuruqxW4WF1cmXbuMuhqc/edit?usp=sharing'
 poster_url: ''
 video_url: ''

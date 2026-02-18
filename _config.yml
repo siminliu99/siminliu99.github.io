@@ -12,7 +12,7 @@ site_theme               : "default" # The available themes options are "default
 title                    : "Simin Liu"
 title_separator          : "-"
 name                     : &name "Simin Liu"
-description              : &description "Simin Liu's academic portfolio — robotics, planning, and control"
+description              : &description "Simin Liu's personal website"
 # url                      : https://siminl.com
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "siminliu99/siminliu99.github.io"
@@ -28,13 +28,13 @@ author:
   # bio              : "PhD candidate at CMU's Robotics Institute. Research in planning and control for autonomous systems."
   # location         : "Pittsburgh, PA"
   # employer         : "Carnegie Mellon University"
-  uri              : "https://siminl.com"
-  email            : "simin.liu.1314@gmail.com"
+  # uri              : "https://siminl.com"
+  # email            : "simin.liu.1314@gmail.com"
 
   # Academic websites
   academia         : # URL
   arxiv            : # URL
-  googlescholar    : # URL - add your Google Scholar profile URL
+  googlescholar    : https://scholar.google.com/citations?user=E0FlukAAAAAJ&hl=en # URL - add your Google Scholar profile URL
   inspire-hep      : # URL
   impactstory      : # URL
   orcid            : # URL
@@ -64,7 +64,7 @@ author:
   keybase          : # Username
   instagram        : # Username
   lastfm           : # Username
-  linkedin         : # Username
+  linkedin         : simin-liu-814ba6122 # Username
   mastodon         : # URL
   medium           : # URL
   pinterest        : # Username

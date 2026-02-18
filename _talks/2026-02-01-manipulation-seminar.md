@@ -1,5 +1,5 @@
 ---
-title: "Global Planning for Contact-Rich Manipulation"
+title: "High-Performance Planning for Contact-Rich Manipulation"
 collection: talks
 type: "Talk"
 permalink: /talks/2026-manipulation-seminar
