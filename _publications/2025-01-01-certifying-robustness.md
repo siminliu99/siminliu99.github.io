@@ -8,9 +8,11 @@ date: 2025-01-01
 venue: 'ACM Transactions on Cyber-Physical Systems, 2025'
 authors: 'X. Luo, T. Wei, S. Liu, Z. Wang, L. Mattei-Mendez, T. Loper, J. Neighbor, C. Hutchison, C. Liu'
 award: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/2408.00117'
 slides_url: ''
 poster_url: ''
 video_url: ''
+code_url: ''
+website_url: ''
 ---
 We formally verify the robustness of learned perception components (keypoint detection and pose estimation) in an aircraft autonomy stack, providing certificates of robustness against adversarial perturbations.

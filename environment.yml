@@ -1,0 +1,7 @@
+name: drone_sim
+dependencies:
+  - python=3.11
+  - numpy
+  - pip
+  - pip:
+    - mujoco

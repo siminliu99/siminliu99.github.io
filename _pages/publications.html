@@ -21,6 +21,8 @@ author_profile: true
       {% if post.slides_url and post.slides_url != '' %}<a href="{{ post.slides_url }}">slides</a>{% endif %}
       {% if post.poster_url and post.poster_url != '' %}<a href="{{ post.poster_url }}">poster</a>{% endif %}
       {% if post.video_url and post.video_url != '' %}<a href="{{ post.video_url }}">video</a>{% endif %}
+      {% if post.website_url and post.website_url != '' %}<a href="{{ post.website_url }}">website</a>{% endif %}
+      {% if post.code_url and post.code_url != '' %}<a href="{{ post.code_url }}">code</a>{% endif %}
     </div>
   </li>
 {% endfor %}

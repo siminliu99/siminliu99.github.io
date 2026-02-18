@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm a recent PhD graduate of CMU's Robotics Institute. My research combines machine learning and model-based planning and control for structured, scalable autonomy. In the past, I've worked on planning for contact-rich manipulation, safe control for agile aerial robots, and control for locomotion under disturbances. At CMU, I was honored to be advised by [Changliu Liu](https://www.cs.cmu.edu/~cliu6/) and [John Dolan](https://www.ri.cmu.edu/ri-faculty/john-m-dolan/) and supported by the Qualcomm Graduate Fellowship. I have also spent time at the [Robotics and AI Institute](https://theaiinstitute.com/) (previously the Boston Dynamics AI Institute).
+I'm a recent PhD graduate of CMU's Robotics Institute. My research combines machine learning and model-based planning and control for structured, scalable autonomy. In the past, I've worked on planning for contact-rich manipulation, safe control for agile aerial robots, and adaptive control for locomotion under disturbances. At CMU, I was honored to be advised by [Changliu Liu](https://www.cs.cmu.edu/~cliu6/) and [John Dolan](https://www.ri.cmu.edu/ri-faculty/john-m-dolan/) and supported by the Qualcomm Graduate Fellowship. I have also spent time at the [Robotics and AI Institute](https://theaiinstitute.com/) (previously the Boston Dynamics AI Institute).
 
 Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked with [Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/) on deep RL for robotics.
 
@@ -17,14 +17,14 @@ Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked
 
 ## News
 
-- [Feb 2026] Talk at CMU Manipulation Seminar: "Global Planning for Contact-Rich Manipulation"
-- [2025] Paper accepted at ACM Transactions on Cyber-Physical Systems: certifying robustness of learned perception
+<!-- - [Feb 2026] Talk at CMU Manipulation Seminar: "Global Planning for Contact-Rich Manipulation" -->
 - [Fall 2025] Successfully passed defense
-- [Sep 2024–May 2025] Research internship at the Robotics and AI Institute (formerly Boston Dynamics AI Institute)
-- [Jun 2024] Paper at European Controls Conference: safe control for uncertain systems
-- [2023] Qualcomm Graduate Fellowship (18 selected from 182 applicants)
-- [May 2023] Paper at ICLR 2023 (Oral, top 25%)
-
+- [April 2025] [Paper](https://arxiv.org/abs/2408.00117) accepted at ACM Transactions on Cyber-Physical Systems 
+- [Sept 2024–May 2025] Research internship at the Robotics and AI Institute, with [Tao Pang](https://pangtao.xyz/)
+- [Jun 2024] Paper accepted at ECC
+- [May 2023] Selected for Qualcomm Graduate Fellowship
+- [April 2023] Paper accepted at ICLR
+- [Sept 2022] Paper accepted at CORL 
 ---
 
 ## Research
@@ -36,7 +36,10 @@ Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked
   <p>Sampling-based planners for contact-rich manipulation are common, but they produce circuitous, inefficient trajectories. Improving beyond these methods is hard because the action space is combinatorial and cannot be exhaustively searched. Our insight is to reduce the action space to higher-level, algorithmically-generated reachable set primitives, enabling optimal search in this space in under a minute for bimanual manipulation. </p>
   <div class="portfolio-media">
     <!-- Replace src with your image or embed a video here -->
-    <img src="/images/portfolio/contact_planning.png" alt="Contact-rich manipulation planning" />
+    <!-- <img src="/images/portfolio/contact_planning.png" alt="Contact-rich manipulation planning" /> -->
+    <video autoplay loop muted playsinline>
+    <source src="/images/portfolio/crm.mp4" type="video/mp4">
+    </video>
     <p class="portfolio-caption">Our method generates shorter, more direct plans than a state-of-the-art sampling-based planner.</p>
   </div>
 </div>
@@ -58,7 +61,10 @@ Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked
     <h4>Safe Control for High-Dimensional Systems</h4>
     <p>Grid-based RL can synthesize safety filters via an optimal control formulation, but it quickly becomes intractable beyond ~6D. We take inspiration from deep RL and nonlinear control, posing this problem as training a neural function to satisfy control barrier function (CBF) conditions. We synthesize a safety filter for a 10D system with &lt;2 hours of training, and it triggers orders of magnitude less often than model predictive control (MPC).</p>
     <div class="portfolio-media">
-      <img src="/images/portfolio/safe_control_highdim.png" alt="Safe control for high-dimensional systems" />
+      <!-- <img src="/images/portfolio/safe_control_highdim.png" alt="Safe control for high-dimensional systems" /> -->
+      <video autoplay loop muted playsinline>
+      <source src="/images/portfolio/ncbf_drone_web.mp4" type="video/mp4">
+      </video>
       <p class="portfolio-caption">Our safety filter prevents the pendulum from falling while the nominal controller stabilizes the quadrotor (10D quadrotor–pendulum system).</p>
     </div>
   </div>
@@ -68,7 +74,10 @@ Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked
   <h3>Model-Based RL for Locomotion Under Disturbances</h3>
   <p>We study adaptive locomotion under a broad range of previously unseen disturbances (external forces, state-estimation error, and unmodeled effects), where both purely model-based methods and standard RL can struggle to generalize. We combine adaptive control with meta-learning, performing online model estimation on a neural dynamics model and applying the model inside a sampling-based controller. We pre-train  dynamics features offline using 1–2 hours of disturbance data, and at deployment we find the controller can track a path closely despite unseen disturbances.</p>
   <div class="portfolio-media">
-    <img src="/images/portfolio/locomotion.png" alt="Locomotion under disturbances" />
+    <!-- <img src="/images/portfolio/locomotion.png" alt="Locomotion under disturbances" /> -->
+    <video autoplay loop muted playsinline>
+    <source src="/images/portfolio/maml_2x.mp4" type="video/mp4">
+    </video>
     <p class="portfolio-caption">The robot closely tracks the path despite leg loss, terrain changes, payload variation, and state-estimation error.</p>
   </div>
 </div>
@@ -92,7 +101,8 @@ Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked
   border-radius: 6px;
   overflow: hidden;
 }
-.portfolio-media img {
+.portfolio-media img,
+.portfolio-media video {
   width: 100%;
   display: block;
 }

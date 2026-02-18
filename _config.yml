@@ -13,7 +13,7 @@ title                    : "Simin Liu"
 title_separator          : "-"
 name                     : &name "Simin Liu"
 description              : &description "Simin Liu's academic portfolio — robotics, planning, and control"
-url                      : https://siminl.com
+# url                      : https://siminl.com
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "siminliu99/siminliu99.github.io"
 
@@ -22,12 +22,12 @@ repository               : "siminliu99/siminliu99.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "simin_circle_crop_profile.png"
   name             : "Simin Liu"
-  pronouns         : "she/her"
-  bio              : "PhD candidate at CMU's Robotics Institute. Research in planning and control for autonomous systems."
-  location         : "Pittsburgh, PA"
-  employer         : "Carnegie Mellon University"
+  # pronouns         : "she/her"
+  # bio              : "PhD candidate at CMU's Robotics Institute. Research in planning and control for autonomous systems."
+  # location         : "Pittsburgh, PA"
+  # employer         : "Carnegie Mellon University"
   uri              : "https://siminl.com"
   email            : "simin.liu.1314@gmail.com"
 

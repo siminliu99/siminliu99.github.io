@@ -8,9 +8,10 @@ date: 2018-04-01
 venue: 'International Conference on Learning Representations (ICLR), 2018'
 authors: 'A. Nagabandi*, I. Clavera*, S. Liu, R.S. Fearing, P. Abbeel, S. Levine, C. Finn'
 award: ''
-arxiv_url: ''
+arxiv_url: 'https://arxiv.org/abs/1803.11347'
 slides_url: ''
 poster_url: ''
 video_url: ''
+website_url: 'https://sites.google.com/view/learning2adapt'
+code_url: 'https://github.com/iclavera/learning_to_adapt'
 ---
-We apply meta-reinforcement learning to enable fast online adaptation to previously unseen disturbances in real-world robotic environments. Using only 1.5 hours of offline disturbance data, the learned controller enables a millirobot to closely track a path despite leg loss, terrain changes, payload variation, and state-estimation error. We combine offline meta-learning of dynamics features with online model estimation inside a model predictive controller.
