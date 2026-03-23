@@ -15,7 +15,12 @@ var addressPoints = [
     18.0710935
   ],
   [
-    "Global Planning for Contact-Rich Manipulation<br />Manipulation Seminar, Carnegie Mellon University; Pittsburgh, PA",
+    "High-Performance Planning for Contact-Rich Manipulation<br />Manipulation Seminar, Carnegie Mellon University; Pittsburgh, PA",
+    40.4406968,
+    -80.0025666
+  ],
+  [
+    "High-Performance Planning for Contact-Rich Manipulation<br />Robotics Seminar, Duke University; Pittsburgh, PA",
     40.4406968,
     -80.0025666
   ],
