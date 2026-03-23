@@ -21,8 +21,8 @@ You can reach me at simin.liu.1314 -at- gmail dot com
 
 ## News
 
-- [March 2026] Talk at Duke Robotics Seminar on [planning for contact-rich manipulation](https://arxiv.org/abs/2601.10827) 
-- [March 2026] Talk at CMU Manipulation Seminar on [planning for contact-rich manipulation](https://arxiv.org/abs/2601.10827)
+- [March 2026] Talk at Duke Robotics Seminar on [planning for contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing) 
+- [March 2026] Talk at CMU Manipulation Seminar on [planning for contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing)
 - [Fall 2025] [Passed defense!](/images/defense.jpeg)
 - [April 2025] [Paper](https://arxiv.org/abs/2408.00117) accepted at ACM Transactions on Cyber-Physical Systems 
 - [Sept 2024–May 2025] Research internship at the Robotics and AI Institute, with [Tao Pang](https://pangtao.xyz/)
