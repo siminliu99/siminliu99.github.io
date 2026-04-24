@@ -7,13 +7,16 @@ redirect_from:
   - /about.html
 ---
 
-I'm a recent PhD graduate of CMU's Robotics Institute. My research combines machine learning and model-based planning and control for structured, scalable autonomy. In the past, I've worked on planning for contact-rich manipulation, safe control for agile aerial robots, and adaptive control for locomotion under disturbances. At CMU, I was advised by [Changliu Liu](https://www.cs.cmu.edu/~cliu6/) and [John Dolan](https://www.ri.cmu.edu/ri-faculty/john-m-dolan/) and a recipient of the Qualcomm Graduate Fellowship. I have also spent time at the [Robotics and AI Institute](https://theaiinstitute.com/) (previously the Boston Dynamics AI Institute).
+I am a PhD at CMU's Robotics Institute, specializing in dexterous manipulation at the intersection of robot learning and model-based planning. My main line of work is generating high-quality plans for dexterous manipulation and using them as synthetic demonstrations to accelerate RL training. I'm passionate about continuing to bring my strong classical robotics background (planning, controls, optimization) to improving the efficiency and robustness of RL. 
 
-Prior to CMU, I did my undergrad at UC Berkeley in EECS and Math, where I worked with [Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/) on deep RL for robotics.
+Previously, I worked on learned safe control for quadrotors and multi-task RL for locomotion.
+I care deeply about making algorithms work on real hardware, and I've shipped all my research on physical systems: bimanual KUKA, quadrotors, and legged millirobots. 
+
+At CMU, I am advised by [Changliu Liu](https://www.cs.cmu.edu/~cliu6/) and [John Dolan](https://www.ri.cmu.edu/ri-faculty/john-m-dolan/), and a recipient of the Qualcomm Graduate Fellowship. I also spent a few semesters on the Dexterous Mobile Manipulation team at [Robotics and AI Institute](https://theaiinstitute.com/). Prior to CMU, I did my undergrad in EECS at UC Berkeley, where I worked with [Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/) on deep RL for robotics.
 
 You can reach me at simin.liu.1314 -at- gmail dot com
 
-<span style="color: #c00; font-weight: bold;">I am on the job market — please reach out if you have a relevant role!</span>
+<span style="color: #c00; font-weight: bold;">I am on the job market — please reach out if you have a relevant role.</span>
 
 ---
 
@@ -23,7 +26,7 @@ You can reach me at simin.liu.1314 -at- gmail dot com
 
 - [March 2026] Talk at Duke Robotics Seminar on [planning for contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing) 
 - [March 2026] Talk at CMU Manipulation Seminar on [planning for contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing)
-- [Fall 2025] [Passed defense!](/images/defense.jpeg)
+<!-- - [Fall 2025] [Passed defense!](/images/defense.jpeg) -->
 - [April 2025] [Paper](https://arxiv.org/abs/2408.00117) accepted at ACM Transactions on Cyber-Physical Systems 
 - [Sept 2024–May 2025] Research internship at the Robotics and AI Institute, with [Tao Pang](https://pangtao.xyz/)
 - [Jun 2024] [Paper](https://arxiv.org/abs/2311.00822) accepted at ECC
