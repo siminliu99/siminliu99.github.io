@@ -43,17 +43,39 @@ You can reach me at simin.liu.1314 -at- gmail dot com
 
 <div class="portfolio-list">
 
-<div class="portfolio-item">
-  <h3>Higher-Quality Planning for Contact-Rich Manipulation</h3>
-  <p> We built a planner that enables a bimanual system to move large, heavy objects using whole-arm contact. Unlike prior sampling-based approaches, which could produce whole-arm plans but at poor quality, this planner globally optimizes over grasp sequencing and in-grasp motion jointly. This joint optimization produces consistent, efficient plans suitable for hardware deployment and reinforcement learning. </p>
-  <div class="portfolio-media">
-    <!-- Replace src with your image or embed a video here -->
-    <!-- <img src="/images/portfolio/contact_planning.png" alt="Contact-rich manipulation planning" /> -->
-    <video autoplay loop muted playsinline preload="auto">
-    <source src="/images/portfolio/crm.mp4" type="video/mp4">
-    </video>
-    <!-- <p class="portfolio-caption">Our method generates shorter, more direct plans than a state-of-the-art sampling-based planner.</p> -->
-    <p class="portfolio-caption">Our method generates short, direct plans that leverage all manipulator surfaces, not just end-effectors.</p>
+<div class="portfolio-group">
+  <h3 class="portfolio-group-title">Dexterous, Contact-Rich Manipulation</h3>
+  <p class="portfolio-group-intro">Building learning and planning algorithms for dexterous, contact-rich manipulation, where the full arm is used to move objects, not just the end-effector. Contact-rich manipulation is more challenging and more expressive than pick-and-place.</p>
+
+  <div class="portfolio-subitem">
+    <h4>Higher-Quality Model-Based Planning</h4>
+    <p>We built a planner that enables a bimanual system to move large, heavy objects using whole-arm contact. Unlike prior sampling-based approaches, which could produce whole-arm plans but at poor quality, this planner globally optimizes over grasp sequencing and in-grasp motion jointly. This joint optimization produces consistent, efficient plans suitable for hardware deployment and reinforcement learning. </p>
+    <div class="portfolio-media">
+      <!-- <img src="/images/portfolio/safe_control_highdim.png" alt="Safe control for high-dimensional systems" /> -->
+      <video autoplay loop muted playsinline preload="auto">
+      <source src="/images/portfolio/crm.mp4" type="video/mp4">
+      </video>
+      <p class="portfolio-caption">Our method generates short, direct plans that leverage all manipulator surfaces, not just end-effectors.</p>
+    </div>
+  </div>
+
+  <div class="portfolio-subitem">
+    <h4>Learning from Planner-Generated Demonstrations </h4>
+    <p> (Ongoing work): Synthetic data avoids the cross-embodiment transfer issues of human data, and is therefore a promising additional data source for today's VLAs and RL algorithms. Teleoperation is also often awkward for contact-rich manipulation. Building on our planner for contact-rich manipulation, we're using its outputs as synthetic demonstrations for RL, and measuring how much they accelerate training and where the gains are largest. </p>
+    <div class="portfolio-media">
+      <div class="portfolio-grid-3x3">
+        <img src="/images/grs_query_7.gif" alt="Planner demo" />
+        <img src="/images/grs_query_9.gif" alt="Planner demo" />
+        <img src="/images/grs_query_63.gif" alt="Planner demo" />
+        <img src="/images/grs_query_66.gif" alt="Planner demo" />
+        <img src="/images/grs_query_75.gif" alt="Planner demo" />
+        <img src="/images/grs_query_78.gif" alt="Planner demo" />
+        <img src="/images/grs_query_115.gif" alt="Planner demo" />
+        <img src="/images/grs_query_161.gif" alt="Planner demo" />
+        <img src="/images/grs_query_190.gif" alt="Planner demo" />
+      </div>
+      <p class="portfolio-caption">A sampling of planner-generated demonstrations for different (start, goal) queries.</p>
+    </div>
   </div>
 </div>
 
@@ -89,7 +111,7 @@ We synthesized robust-adaptive safety filters for nonlinear systems with unknown
 
 <div class="portfolio-item">
   <h3>Multitask RL for Adaptive Locomotion</h3>
-  <p>WModel-based methods and standard RL both struggle to generalize locomotion controllers to previously unseen disturbances. We develop a multitask model-based RL algorithm that trains an adaptable dynamics model on a few hours of domain-randomized data — scenarios like leg loss, terrain variation, and payload changes. We demonstrate a 3–8x increase in path-following reward over a no-adaptation baseline on unseen disturbances.</p>
+  <p>Model-based methods and standard RL both struggle to generalize locomotion controllers to previously unseen disturbances. We develop a multitask model-based RL algorithm that trains an adaptable dynamics model on a few hours of domain-randomized data — scenarios like leg loss, terrain variation, and payload changes. We demonstrate a 3–8x increase in path-following reward over a no-adaptation baseline on unseen disturbances.</p>
   <div class="portfolio-media">
     <!-- <img src="/images/portfolio/locomotion.png" alt="Locomotion under disturbances" /> -->
     <video autoplay loop muted playsinline preload="auto">
@@ -125,6 +147,17 @@ We synthesized robust-adaptive safety filters for nonlinear systems with unknown
 .portfolio-media video {
   width: 100%;
   display: block;
+}
+.portfolio-grid-3x3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.portfolio-grid-3x3 img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 .portfolio-caption {
   margin: 0;
