@@ -27,6 +27,7 @@ You can reach me at simin.liu.1314 -at- gmail dot com
 - [March 2026] Talk at Duke Manipulation Seminar on [contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing) 
 - [March 2026] Talk at CMU Manipulation Seminar on [contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing)
 <!-- - [Fall 2025] [Passed defense!](/images/defense.jpeg) -->
+- [Jan 2025] [Paper](https://arxiv.org/abs/2601.10827) submitted to IEEE T-RO. 
 - [April 2025] [Paper](https://arxiv.org/abs/2408.00117) accepted at ACM Transactions on Cyber-Physical Systems 
 - [Sept 2024] Starting research internship at the Robotics and AI Institute, with [Tao Pang](https://pangtao.xyz/)
 - [Jun 2024] [Paper](https://arxiv.org/abs/2311.00822) accepted at ECC
@@ -87,8 +88,8 @@ We synthesized robust-adaptive safety filters for nonlinear systems with unknown
 </div>
 
 <div class="portfolio-item">
-  <h3>Model-Based RL for Locomotion Under Disturbances</h3>
-  <p>We study adaptive locomotion under a broad range of previously unseen disturbances (external forces, state-estimation error, and unmodeled effects), where both purely model-based methods and standard RL can struggle to generalize. We combine adaptive control with meta-learning, performing online model estimation on a neural dynamics model and applying the model inside a sampling-based controller. We pre-train  dynamics features offline using 1–2 hours of disturbance data, and at deployment we find the controller can track a path closely despite unseen disturbances.</p>
+  <h3>Multitask RL for Adaptive Locomotion</h3>
+  <p>WModel-based methods and standard RL both struggle to generalize locomotion controllers to previously unseen disturbances. We develop a multitask model-based RL algorithm that trains an adaptable dynamics model on a few hours of domain-randomized data — scenarios like leg loss, terrain variation, and payload changes. We demonstrate a 3–8x increase in path-following reward over a no-adaptation baseline on unseen disturbances.</p>
   <div class="portfolio-media">
     <!-- <img src="/images/portfolio/locomotion.png" alt="Locomotion under disturbances" /> -->
     <video autoplay loop muted playsinline preload="auto">
