@@ -29,7 +29,7 @@ You can reach me at simin.liu.1314 -at- gmail dot com
 <!-- - [Fall 2025] [Passed defense!](/images/defense.jpeg) -->
 - [Jan 2025] [Paper](https://arxiv.org/abs/2601.10827) submitted to IEEE T-RO. 
 - [April 2025] [Paper](https://arxiv.org/abs/2408.00117) accepted at ACM Transactions on Cyber-Physical Systems 
-- [Sept 2024] Starting research internship at the Robotics and AI Institute, with [Tao Pang](https://pangtao.xyz/)
+- [Sept 2024] Started research internship at the Robotics and AI Institute, with [Tao Pang](https://pangtao.xyz/)
 - [Jun 2024] [Paper](https://arxiv.org/abs/2311.00822) accepted at ECC
 - [May 2023] Selected for Qualcomm Graduate Fellowship
 - [April 2023] [Paper](https://arxiv.org/abs/2306.06611) accepted at ICLR
