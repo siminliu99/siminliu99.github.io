@@ -24,11 +24,11 @@ You can reach me at simin.liu.1314 -at- gmail dot com
 
 ## News
 
-- [March 2026] Talk at Duke Robotics Seminar on [planning for contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing) 
-- [March 2026] Talk at CMU Manipulation Seminar on [planning for contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing)
+- [March 2026] Talk at Duke Manipulation Seminar on [contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing) 
+- [March 2026] Talk at CMU Manipulation Seminar on [contact-rich manipulation](https://docs.google.com/presentation/d/1KOY8aUZNnUM0n5xJHm-Gswq5P9HSXQ7ksvZ_J_OuEY8/edit?usp=sharing)
 <!-- - [Fall 2025] [Passed defense!](/images/defense.jpeg) -->
 - [April 2025] [Paper](https://arxiv.org/abs/2408.00117) accepted at ACM Transactions on Cyber-Physical Systems 
-- [Sept 2024–May 2025] Research internship at the Robotics and AI Institute, with [Tao Pang](https://pangtao.xyz/)
+- [Sept 2024] Starting research internship at the Robotics and AI Institute, with [Tao Pang](https://pangtao.xyz/)
 - [Jun 2024] [Paper](https://arxiv.org/abs/2311.00822) accepted at ECC
 - [May 2023] Selected for Qualcomm Graduate Fellowship
 - [April 2023] [Paper](https://arxiv.org/abs/2306.06611) accepted at ICLR
@@ -38,13 +38,13 @@ You can reach me at simin.liu.1314 -at- gmail dot com
 
 ---
 
-## Portfolio
+## Selected Projects
 
 <div class="portfolio-list">
 
 <div class="portfolio-item">
-  <h3>High-Performance Planning for Contact-Rich Manipulation</h3>
-  <p>Sampling-based planners for contact-rich manipulation are common, but they produce circuitous, inefficient trajectories. Improving beyond these methods is hard because the action space is combinatorial and cannot be exhaustively searched. Our insight is to reduce the action space to higher-level, algorithmically-generated reachable set primitives, enabling optimal search in this space in under a minute for bimanual manipulation. </p>
+  <h3>Higher-Quality Planning for Contact-Rich Manipulation</h3>
+  <p> We built a planner that enables a bimanual system to move large, heavy objects using whole-arm contact. Unlike prior sampling-based approaches, which could produce whole-arm plans but at poor quality, this planner globally optimizes over grasp sequencing and in-grasp motion jointly. This joint optimization produces consistent, efficient plans suitable for hardware deployment and reinforcement learning. </p>
   <div class="portfolio-media">
     <!-- Replace src with your image or embed a video here -->
     <!-- <img src="/images/portfolio/contact_planning.png" alt="Contact-rich manipulation planning" /> -->
@@ -58,11 +58,12 @@ You can reach me at simin.liu.1314 -at- gmail dot com
 
 <div class="portfolio-group">
   <h3 class="portfolio-group-title">Safe Control</h3>
-  <p class="portfolio-group-intro">We build reactive safety filters that wrap a nominal controller, modifying its commands only when safety is at risk. A good filter is minimally invasive while respecting input bounds and system dynamics that limit how quickly safety maneuvers can be executed.</p>
+  <p class="portfolio-group-intro">Built full-stack safe control systems for agile quadrotors, where a safety filter wraps a nominal planner or controller and intervenes only when needed.</p>
 
   <div class="portfolio-subitem">
     <h4>Safe Control for Uncertain Systems</h4>
-    <p>Most safety filter synthesis approaches assume a known model, which is impractical. We consider systems with uncertain model parameters and devise a sum-of-squares programming algorithm for synthesis. We generate a geofencing (stay-within-region) safety filter for a drone with unknown drag in minutes on a regular laptop CPU.</p>
+    <p>Most safety filter synthesis approaches assume a known model, which is impractical.
+We synthesized robust-adaptive safety filters for nonlinear systems with unknown model parameters. The filter can be combined with online parameter estimation for end-to-end safety. Generated a collision-avoidance filter for a quadrotor with unknown drag in minutes on a regular laptop CPU. </p>
     <div class="portfolio-media">
       <!-- <img src="/images/portfolio/safe_control_uncertain.png" alt="Safe control for uncertain systems" /> -->
       <video autoplay loop muted playsinline preload="auto">
@@ -74,7 +75,7 @@ You can reach me at simin.liu.1314 -at- gmail dot com
 
   <div class="portfolio-subitem">
     <h4>Safe Control for High-Dimensional Systems</h4>
-    <p>Grid-based RL can synthesize safety filters via an optimal control formulation, but it quickly becomes intractable beyond ~6D. We take inspiration from deep RL and nonlinear control, posing this problem as training a neural function to satisfy control barrier function (CBF) conditions. We synthesize a safety filter for a 10D system with &lt;2 hours of training, and it triggers orders of magnitude less often than model predictive control (MPC).</p>
+    <p>Grid-based RL can synthesize safety filters via an optimal control formulation, but it quickly becomes intractable beyond ~6D. We take inspiration from Q-learning and nonlinear control and introduce "neural control barrier functions", a neural safety filter parameterization that scales synthesis to systems with high state dimension. We learn a pendulum-balancing filter for a 10D quadrotor-pendulum in under 2 hours, and it intervenes orders of magnitude less often than an MPC-based safety filter. </p>
     <div class="portfolio-media">
       <!-- <img src="/images/portfolio/safe_control_highdim.png" alt="Safe control for high-dimensional systems" /> -->
       <video autoplay loop muted playsinline preload="auto">
